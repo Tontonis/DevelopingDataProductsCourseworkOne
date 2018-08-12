@@ -1,0 +1,35 @@
+---
+title: "DevelopingDataProductsCourseworkOne"
+author: "Hugo Day"
+date: "12 August 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This is just a simple webpage demonstrating the *INCREDIBLE* power of leaflet, Shiny and other R webapps. Documented on the 12th August 2018, this map shows an array of interesting locations in Oxford, UK, not affiliated to the university. Below the required libraries are imported, but will be run silently for neatness.
+
+```{r, echo=FALSE}
+library(leaflet)
+```
+
+## Map
+
+Explore these magical backwaters, they're places most fabulous.
+
+
+```{r}
+mapPoints_df = data.frame("lat"=c(51.754606,51.758708, 51.762571,51.754654),"lon"=c(-1.255524,-1.254935, -1.275148, -1.252870 ),placeName=c("BlackWell's Bookshoop","Pitt Rivers Museum","Port Meadow","The Turf Tavern"),comment=c("The best book basement in the world","Victorian eclectic plays at museum","The best kept piece of greenery in Oxford","Beer and food in a hidden corner of Oxford"))
+
+
+map<-leaflet(data=mapPoints_df) %>%
+  addTiles() %>%
+  addMarkers(lng=~lon,lat=~lat, popup=~as.character(comment),label=~as.character(placeName))
+map  # print something pretty
+```
+
+
